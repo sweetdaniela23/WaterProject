@@ -43,7 +43,7 @@ namespace WaterProject
             services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
+            services.AddServerSideBlazor();
 
         }
 
@@ -81,6 +81,9 @@ namespace WaterProject
                 
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
         }
     }
